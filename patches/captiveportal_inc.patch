@@ -1,0 +1,35 @@
+--- /etc/inc/captiveportal.inc.orig      2024-03-18 09:36:49.540049000 -0300
++++ /etc/inc/captiveportal.inc   2024-03-18 09:39:46.267379000 -0300
+@@ -34,6 +34,7 @@
+ require_once("filter.inc");
+ require_once("voucher.inc");
+ require_once("xmlrpc_client.inc");
++require_once("captive2guardian.inc");
+
+ /* Captiveportal Radius Accounting */
+ PEAR::loadExtension('bcmath');
+@@ -874,6 +875,7 @@
+                /*
+                 * Delete client's anchor entry from auth anchor
+                 */
++               captive2guardian_remove_entry_by_ip($dbent[2]);
+                $cpsession = captiveportal_isip_logged($dbent[2]);
+                if (!empty($cpsession)) {
+                        $host = array();
+@@ -978,6 +980,7 @@
+
+        unlock($cpdblck);
+        unlock($rcprunelock);
++       captive2guardian_remove_all_entries();
+        return true;
+ }
+
+@@ -2226,7 +2229,7 @@
+        } else {
+                portal_reply_page($my_redirurl, "redir", "Just redirect the user.");
+        }
+-
++       captive2guardian_add_entry($clientip, $username);
+        return $sessionid;
+ }
+

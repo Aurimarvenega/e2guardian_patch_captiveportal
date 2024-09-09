@@ -1,0 +1,10 @@
+--- /usr/local/captiveportal/index.php.bkp      2024-03-18 09:07:07.336337000 -0300
++++ /usr/local/captiveportal/index.php  2024-03-18 09:07:34.549119000 -0300
+@@ -38,6 +38,7 @@
+ global $cpzone, $cpzoneid, $cpzoneprefix;
+
+ $cpzone = strtolower($_REQUEST['zone']);
++if(empty($cpzone)){ $cpzone = array_keys($config["captiveportal"])[0]; }
+ $cpcfg = config_get_path("captiveportal/{$cpzone}");
+
+ /* NOTE: IE 8/9 is buggy and that is why this is needed */
