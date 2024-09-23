@@ -8,7 +8,7 @@ Versão: 1.3 - atualização URL do repositório extra oficial de plugins e adic
 Versão: 1.3 - atualização do procedimento para pfSense 2.7.2.  
 Versão: 1.2 - correções para detectar logout dos usuários e limpar cache junto ao captive portal.  
 Versão: 1.1 - publicação inicial.  
-Responsável: Luciano Rodrigues - luciano@citrait.com.br  
+Responsável: Luciano Rodrigues - luciano@sysadminbr.com.br  
 
 ## Instalação:
 
@@ -68,11 +68,11 @@ ln -s /lib/libcrypto.so.30 /lib/libcrypto.so.111
 ### 6- Instale o patch do captive portal.  
 6.1- Acesse a página abaixo e copie todo o código:  
 ```
-https://raw.githubusercontent.com/CitraIT/e2guardian_patch_captiveportal/main/patches/captiveportal.patch
+https://raw.githubusercontent.com/sysadminbr/e2guardian_patch_captiveportal/main/patches/captiveportal.patch
 ```
 6.2- Acesse o menu System -> Patches e clique em Add Patch.  
 6.3- Cole o código no campo Patch Contents.  
-6.4- Em Description preencha com: CitraIT_Patch_CaptivePortal_Index_PHP.  
+6.4- Em Description preencha com: sysadminbr_Patch_CaptivePortal_Index_PHP.  
 6.5- No campo Path Strip Count defina com valor 1 e salve o patch (botão save ao final da página).  
 6.6- Clique em Save ao final da página.  
 6.7- Clique em apply no patch recem registrado.  
@@ -92,7 +92,7 @@ https://raw.githubusercontent.com/CitraIT/e2guardian_patch_captiveportal/main/pa
 plugname = 'dnsauth'
 
 # Base domain
-basedomain = "citrait.local"
+basedomain = "sysadminbr.local"
 
 # Authentication URL
 authurl = "https://192.168.1.1:8002/?redirurl"
@@ -105,7 +105,7 @@ prefix_auth = "https://192.168.1.1:8002/"
 #  no - drops through to next auth plugin
 redirect_to_auth = "yes"
 ```
-7.4- Substitua citrait.local pelo nome de domínio do firewall (ex.: empresa.corp).  
+7.4- Substitua sysadminbr.local pelo nome de domínio do firewall (ex.: empresa.corp).  
 7.5- Substitua a authurl pelo endereço no qual o pfSense te redireciona para o Captive Portal.  
 7.6- Em prefix_auth ajuste conforme a variável authurl, mas terminando na barra após a porta.  
 7.7- Clique em Save para salvar o arquivo.  
@@ -126,18 +126,18 @@ redirect_to_auth = "yes"
 ### 10- Baixar a biblioteca de rotinas da integração.  
 10.1- No menu Diagnostics -> Command Prompt execute o comando abaixo:  
 ```
-fetch -q -o /etc/inc/captive2guardian.inc https://raw.githubusercontent.com/CitraIT/e2guardian_patch_captiveportal/main/etc/inc/captive2guardian.inc
+fetch -q -o /etc/inc/captive2guardian.inc https://raw.githubusercontent.com/sysadminbr/e2guardian_patch_captiveportal/main/etc/inc/captive2guardian.inc
 ```  
 
 
 ### 11- Aplicar o patch da biblioteca do captive portal:  
 11.1- Acesse a página abaixo e copie todo o código:  
 ```
-https://raw.githubusercontent.com/CitraIT/e2guardian_patch_captiveportal/main/patches/captiveportal_inc.patch
+https://raw.githubusercontent.com/sysadminbr/e2guardian_patch_captiveportal/main/patches/captiveportal_inc.patch
 ```  
 11.2- Acesse o menu System -> Patches. Clique em Add New Patch.  
 11.3- Cole o código no campo Patch Contents.  
-11.4- Em Description preencha com: citrait_captive2guardian_inc.  
+11.4- Em Description preencha com: sysadminbr_captive2guardian_inc.  
 11.5- No campo Path Strip Count defina com valor 1 e salve o patch (botão save ao final da página).  
 11.6- Clique em apply no patch recem registrado.  
 
